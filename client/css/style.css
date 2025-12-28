@@ -1,0 +1,98 @@
+/* Toast Container - sab toasts yahan stack honge */
+#toastContainer {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Individual Toast */
+.toast {
+  min-width: 300px;
+  max-width: 500px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+
+.toast.success {
+  background: rgba(16, 185, 129, 0.95); /* #10b981 */
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.toast.error {
+  background: rgba(239, 68, 68, 0.95); /* #ef4444 */
+  border: 1px solid rgba(252, 165, 165, 0.3);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.hide {
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shine {
+  animation: shine 2s infinite linear;
+}
+
+.card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 30px 60px var(--card-shadow);
+}
+
+
+.preview-img {
+  transition: box-shadow 0.35s ease;
+}
+
+.preview-img:hover {
+  box-shadow: 0 30px 60px rgba(99,102,241,0.25);
+}
+
+  .feature-card {
+    padding: 1em 1.5em;
+    text-align: center;
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    display: grid;
+    place-items: center;
+  }
+
+  .dark .feature-card {
+    background: rgba(31, 41, 55, 0.75);
+  }
+
+  .feature-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 30px 60px rgba(99,102,241,0.25);
+  }

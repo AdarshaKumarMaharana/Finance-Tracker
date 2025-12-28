@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = "https://finance-tracker-ama6.onrender.com/api";
 
 const getToken = () => localStorage.getItem("token");
 

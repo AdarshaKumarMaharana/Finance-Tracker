@@ -1,6 +1,6 @@
-import pool from '../config/db.js';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import pool from "../config/db.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -13,7 +13,7 @@ export const register = async (req, res) => {
     if (!firstname || !lastname || !email || !password) {
       return res.status(400).json({
         success: false,
-        message: 'Firstname, lastname, email and password are required'
+        message: "Firstname, lastname, email and password are required",
       });
     }
 
@@ -21,14 +21,14 @@ export const register = async (req, res) => {
 
     // 2️⃣ Check existing email
     const [existing] = await pool.query(
-      'SELECT id FROM users WHERE email = ?',
+      "SELECT id FROM users WHERE email = ?",
       [emailLower]
     );
 
     if (existing.length > 0) {
       return res.status(409).json({
         success: false,
-        message: 'Email already registered'
+        message: "Email already registered",
       });
     }
 
@@ -36,7 +36,7 @@ export const register = async (req, res) => {
     if (password.length < 6) {
       return res.status(400).json({
         success: false,
-        message: 'Password must be at least 6 characters'
+        message: "Password must be at least 6 characters",
       });
     }
 
@@ -54,34 +54,31 @@ export const register = async (req, res) => {
         emailLower,
         hashedPassword,
         profileImageUrl || null,
-        true
+        true,
       ]
     );
 
     return res.status(201).json({
       success: true,
-      message: 'User registered successfully',
-      userId: result.insertId
+      message: "User registered successfully",
+      userId: result.insertId,
     });
-
   } catch (error) {
-    console.error('Register Error:', error);
+    console.error("Register Error:", error);
 
-    if (error.code === 'ER_DUP_ENTRY') {
+    if (error.code === "ER_DUP_ENTRY") {
       return res.status(409).json({
         success: false,
-        message: 'Email already registered'
+        message: "Email already registered",
       });
     }
 
     return res.status(500).json({
       success: false,
-      message: 'Internal server error'
+      message: "Internal server error",
     });
   }
 };
-
-
 
 // Login
 export const login = async (req, res) => {
@@ -92,7 +89,7 @@ export const login = async (req, res) => {
     if (!email || !password) {
       return res.status(400).json({
         success: false,
-        message: 'Email and password are required'
+        message: "Email and password are required",
       });
     }
 
@@ -109,7 +106,7 @@ export const login = async (req, res) => {
     if (users.length === 0) {
       return res.status(404).json({
         success: false,
-        message: 'Email not registered'
+        message: "Email not registered",
       });
     }
 
@@ -118,7 +115,7 @@ export const login = async (req, res) => {
     if (!user.is_active) {
       return res.status(403).json({
         success: false,
-        message: 'Account is inactive'
+        message: "Account is inactive",
       });
     }
 
@@ -127,21 +124,19 @@ export const login = async (req, res) => {
     if (!isMatch) {
       return res.status(401).json({
         success: false,
-        message: 'Wrong password'
+        message: "Wrong password",
       });
     }
 
     // 4️⃣ JWT
-    const token = jwt.sign(
-      { id: user.id, email: user.email },
-      JWT_SECRET,
-      { expiresIn: '7d' }
-    );
+    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
+      expiresIn: "7d",
+    });
 
     // 5️⃣ Response
     return res.status(200).json({
       success: true,
-      message: 'Login successful',
+      message: "Login successful",
       token,
       user: {
         id: user.id,
@@ -149,15 +144,14 @@ export const login = async (req, res) => {
         lastname: user.lastname,
         email: user.email,
         profileImageUrl: user.profile_image_url,
-        createdAt: user.created_at
-      }
+        createdAt: user.created_at,
+      },
     });
-
   } catch (error) {
-    console.error('Login Error:', error);
+    console.error("Login Error:", error);
     return res.status(500).json({
       success: false,
-      message: 'Internal server error'
+      message: "Internal server error",
     });
   }
 };

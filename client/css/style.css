@@ -48,10 +48,13 @@
   transform: translateY(100%);
 }
 
-
 @keyframes shine {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .animate-shine {
@@ -67,32 +70,31 @@
   box-shadow: 0 30px 60px var(--card-shadow);
 }
 
-
 .preview-img {
   transition: box-shadow 0.35s ease;
 }
 
 .preview-img:hover {
-  box-shadow: 0 30px 60px rgba(99,102,241,0.25);
+  box-shadow: 0 30px 60px rgba(99, 102, 241, 0.25);
 }
 
-  .feature-card {
-    padding: 1em 1.5em;
-    text-align: center;
-    border-radius: 1.25rem;
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
-    display: grid;
-    place-items: center;
-  }
+.feature-card {
+  padding: 1em 1.5em;
+  text-align: center;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: grid;
+  place-items: center;
+}
 
-  .dark .feature-card {
-    background: rgba(31, 41, 55, 0.75);
-  }
+.dark .feature-card {
+  background: rgba(31, 41, 55, 0.75);
+}
 
-  .feature-card:hover {
-    transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 30px 60px rgba(99,102,241,0.25);
-  }
+.feature-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 30px 60px rgba(99, 102, 241, 0.25);
+}

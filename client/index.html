@@ -1,547 +1,652 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Personal Finance Tracker App</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Finance Tracker App</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css" />
-  <script type="module">
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] },
-          colors: { primary: '#6366f1', 'primary-dark': '#4f46e5' }
-        }
-      }
-    }
-  </script>
-</head>
-
-<body class="min-h-screen bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 transition-all duration-500">
-  <!-- Sticky Navbar -->
-<nav class="sticky top-0 z-50 bg-white/60 dark:bg-gray-900/80 backdrop-blur-md">
-  <div class="flex justify-between items-center px-6 py-4">
-          <!-- Logo / App Name -->
-      <div class="flex items-center gap-2">
-  <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 
-              flex items-center justify-center shadow-lg">
-    <span class="text-white font-bold text-lg">₹</span>
-  </div>
-
-  <span class="text-2xl font-extrabold tracking-wide 
-    bg-gradient-to-r from-indigo-600 to-purple-600 
-    bg-clip-text text-transparent">
-    FinanceTracker
-  </span>
-</div>
-
-    <div class="flex items-center gap-4">
-      <button id="themeToggle"
-        class="p-2.5 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-        <i data-lucide="moon" class="w-5 h-5"></i>
-      </button>
-
-      <button id="getStartedBtn"
-        class="bg-[#0000ff] hover:bg-[#0000cc] text-white px-6 py-2.5 rounded-xl font-semibold transition shadow-md">
-        Get Started
-      </button>
-    </div>
-  </div>
-
-<div class="h-[2px] w-full
-dark:h-[1px]
-            bg-gradient-to-r
-            from-transparent
-            via-black/50
-            to-transparent
-            dark:via-white/50">
-</div>
-
-</nav>
-
-
-  <!-- Home -->
-<section id="section">
-  <section class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden 
-          bg-gradient-to-b from-violet-100 via-purple-300 to-violet-400
-          dark:bg-gradient-to-bl dark:from-gray-900 dark:via-black dark:to-gray-900">
-  <!-- <div class="absolute inset-0 bg-gradient-to-br from-indigo-400 via-purple-400 to-pink-400 blur-3xl opacity-30 -z-10"></div> -->
-
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center ">
-    <div>
-      <h1 class="text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-6">
-        Control Your Money.<br />
-        <span class="text-indigo-600">Without Stress.</span>
-      </h1>
-      <p class="text-xl text-gray-600 dark:text-gray-300 mb-10">
-        Track income, expenses, and savings in one beautiful dashboard.
-      </p>
-
-      <button
-        onclick="document.getElementById('getStartedBtn').click()"
-        class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-2xl text-xl font-semibold shadow-xl transition transform hover:scale-105"
-      >
-        Get Started Free
-      </button>
-    </div>
-
-    <img
-      src="https://images.unsplash.com/photo-1554224154-26032ffc0d07"
-      class="rounded-3xl shadow-2xl"
-      alt="Finance dashboard"
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
     />
-  </div>
-</section>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script type="module">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "sans-serif"] },
+            colors: { primary: "#6366f1", "primary-dark": "#4f46e5" },
+          },
+        },
+      };
+    </script>
+  </head>
 
+  <body
+    class="min-h-screen bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 transition-all duration-500"
+  >
+    <!-- Sticky Navbar -->
+    <nav
+      class="sticky top-0 z-50 bg-white/60 dark:bg-gray-900/80 backdrop-blur-md"
+    >
+      <div class="flex justify-between items-center px-6 py-4">
+        <!-- Logo / App Name -->
+        <div class="flex items-center gap-2">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg"
+          >
+            <span class="text-white font-bold text-lg">₹</span>
+          </div>
 
-<section class=" py-20 px-6 relative overflow-hidden 
-    bg-gradient-to-b from-violet-400 via-purple-300 to-purple-100
-    dark:bg-gradient-to-br dark:from-gray-900 dark:via-black dark:to-gray-900">
+          <span
+            class="text-2xl font-extrabold tracking-wide bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
+          >
+            FinanceTracker
+          </span>
+        </div>
 
-  <div class="max-w-7xl mx-auto relative">
+        <div class="flex items-center gap-4">
+          <button
+            id="themeToggle"
+            class="p-2.5 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+          >
+            <i data-lucide="moon" class="w-5 h-5"></i>
+          </button>
 
-    <!-- Slides Container -->
-    <div id="carouselSlides" class="relative h-[400px]">
-
-      <!-- Slide 1 -->
-      <div class="absolute inset-0 flex flex-col md:flex-row items-center gap-12 opacity-100 transition-opacity duration-1000">
-        <img
-          src="./assets/images/ThemeFriendly.png"
-          class="rounded-3xl shadow-xl md:w-1/2 h-full object-cover"
-          alt="Track Expenses"
-        />
-        <div class="md:w-1/2 text-center md:text-left px-4 md:px-0">
-    <h3 class="text-5xl font-bold mb-6 text-black dark:text-white">
-      Beautiful in Every Theme
-    </h3>
-
-    <p class="text-xl text-gray-600 dark:text-gray-500">
-      Enjoy a clean, eye-friendly experience in both light and dark modes.
-      FinanceTracker automatically adapts to your theme for comfort, clarity,
-      and a premium look—day or night.
-    </p>
+          <button
+            id="getStartedBtn"
+            class="bg-[#0000ff] hover:bg-[#0000cc] text-white px-6 py-2.5 rounded-xl font-semibold transition shadow-md"
+          >
+            Get Started
+          </button>
         </div>
       </div>
 
-      <!-- Slide 2 -->
-      <div class="absolute inset-0 flex flex-col md:flex-row-reverse items-center gap-12 opacity-0 transition-opacity duration-1000">
-        <img
-          src="./assets/images/ThemeFriendly1.png"
-          class="rounded-3xl shadow-xl md:w-1/2 h-full object-cover"
-          alt="Charts and Budget Goals"
-        />
-        <div class="md:w-1/2 text-center md:text-left px-4 md:px-0">
-          <h3 class="text-5xl font-bold mb-6 text-black dark:text-white">Visual Charts & Budget Goals</h3>
-          <p class="text-xl text-gray-600 dark:text-gray-500">
-            Stunning pie charts, bar graphs, and progress trackers show your spending patterns. Set monthly budgets and watch your savings goals come to life.
-          </p>
+      <div
+        class="h-[2px] w-full dark:h-[1px] bg-gradient-to-r from-transparent via-black/50 to-transparent dark:via-white/50"
+      ></div>
+    </nav>
+
+    <!-- Home -->
+    <section id="section">
+      <section
+        class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden bg-gradient-to-b from-violet-100 via-purple-300 to-violet-400 dark:bg-gradient-to-bl dark:from-gray-900 dark:via-black dark:to-gray-900"
+      >
+        <!-- <div class="absolute inset-0 bg-gradient-to-br from-indigo-400 via-purple-400 to-pink-400 blur-3xl opacity-30 -z-10"></div> -->
+
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <h1
+              class="text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-6"
+            >
+              Control Your Money.<br />
+              <span class="text-indigo-600">Without Stress.</span>
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-10">
+              Track income, expenses, and savings in one beautiful dashboard.
+            </p>
+
+            <button
+              onclick="document.getElementById('getStartedBtn').click()"
+              class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-2xl text-xl font-semibold shadow-xl transition transform hover:scale-105"
+            >
+              Get Started Free
+            </button>
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1554224154-26032ffc0d07"
+            class="rounded-3xl shadow-2xl"
+            alt="Finance dashboard"
+          />
         </div>
-      </div>
+      </section>
 
-      <!-- Slide 3 -->
-      <div class="absolute inset-0 flex flex-col md:flex-row items-center gap-12 opacity-0 transition-opacity duration-1000">
-        <img
-          src="./assets/images/Income-expenses-history.png"
-          class="rounded-3xl shadow-xl md:w-1/2 h-full object-cover"
-          alt="Income Tracking"
-        />
-        <div class="md:w-1/2 text-center md:text-left px-4 md:px-0">
-<h3 class="text-5xl font-bold mb-6 text-black dark:text-white">
-  Smart Transaction History
-</h3>
+      <section
+        class="py-20 px-6 relative overflow-hidden bg-gradient-to-b from-violet-400 via-purple-300 to-purple-100 dark:bg-gradient-to-br dark:from-gray-900 dark:via-black dark:to-gray-900"
+      >
+        <div class="max-w-7xl mx-auto relative">
+          <!-- Slides Container -->
+          <div id="carouselSlides" class="relative h-[400px]">
+            <!-- Slide 1 -->
+            <div
+              class="absolute inset-0 flex flex-col md:flex-row items-center gap-12 opacity-100 transition-opacity duration-1000"
+            >
+              <img
+                src="./assets/images/ThemeFriendly.png"
+                class="rounded-3xl shadow-xl md:w-1/2 h-full object-cover"
+                alt="Track Expenses"
+              />
+              <div class="md:w-1/2 text-center md:text-left px-4 md:px-0">
+                <h3 class="text-5xl font-bold mb-6 text-black dark:text-white">
+                  Beautiful in Every Theme
+                </h3>
 
-<p class="text-xl text-gray-600 dark:text-gray-500">
-  View all your transactions in one place with a clean, searchable, and
-  sortable history. Easily edit or delete entries and find any transaction
-  instantly with powerful filters.
-</p>
+                <p class="text-xl text-gray-600 dark:text-gray-500">
+                  Enjoy a clean, eye-friendly experience in both light and dark
+                  modes. FinanceTracker automatically adapts to your theme for
+                  comfort, clarity, and a premium look—day or night.
+                </p>
+              </div>
+            </div>
 
-        </div>
-      </div>
+            <!-- Slide 2 -->
+            <div
+              class="absolute inset-0 flex flex-col md:flex-row-reverse items-center gap-12 opacity-0 transition-opacity duration-1000"
+            >
+              <img
+                src="./assets/images/ThemeFriendly1.png"
+                class="rounded-3xl shadow-xl md:w-1/2 h-full object-cover"
+                alt="Charts and Budget Goals"
+              />
+              <div class="md:w-1/2 text-center md:text-left px-4 md:px-0">
+                <h3 class="text-5xl font-bold mb-6 text-black dark:text-white">
+                  Visual Charts & Budget Goals
+                </h3>
+                <p class="text-xl text-gray-600 dark:text-gray-500">
+                  Stunning pie charts, bar graphs, and progress trackers show
+                  your spending patterns. Set monthly budgets and watch your
+                  savings goals come to life.
+                </p>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div
+              class="absolute inset-0 flex flex-col md:flex-row items-center gap-12 opacity-0 transition-opacity duration-1000"
+            >
+              <img
+                src="./assets/images/Income-expenses-history.png"
+                class="rounded-3xl shadow-xl md:w-1/2 h-full object-cover"
+                alt="Income Tracking"
+              />
+              <div class="md:w-1/2 text-center md:text-left px-4 md:px-0">
+                <h3 class="text-5xl font-bold mb-6 text-black dark:text-white">
+                  Smart Transaction History
+                </h3>
+
+                <p class="text-xl text-gray-600 dark:text-gray-500">
+                  View all your transactions in one place with a clean,
+                  searchable, and sortable history. Easily edit or delete
+                  entries and find any transaction instantly with powerful
+                  filters.
+                </p>
+              </div>
+            </div>
 
             <!-- Slide 4 -->
-      <div class="absolute inset-0 flex flex-col md:flex-row-reverse items-center gap-12 opacity-0 transition-opacity duration-1000">
-        <img
-          src="./assets/images/Income-expense-setup.png"
-          class="rounded-3xl shadow-xl md:w-1/2 h-full object-cover"
-          alt="Charts and Budget Goals"
-        />
-        <div class="md:w-1/2 text-center md:text-left px-4 md:px-0">
-<h3 class="text-5xl font-bold mb-6 text-black dark:text-white">
-  Add Income & Expenses Seamlessly
-</h3>
+            <div
+              class="absolute inset-0 flex flex-col md:flex-row-reverse items-center gap-12 opacity-0 transition-opacity duration-1000"
+            >
+              <img
+                src="./assets/images/Income-expense-setup.png"
+                class="rounded-3xl shadow-xl md:w-1/2 h-full object-cover"
+                alt="Charts and Budget Goals"
+              />
+              <div class="md:w-1/2 text-center md:text-left px-4 md:px-0">
+                <h3 class="text-5xl font-bold mb-6 text-black dark:text-white">
+                  Add Income & Expenses Seamlessly
+                </h3>
 
-<p class="text-xl text-gray-600 dark:text-gray-500">
-  Record every transaction with ease by adding income or expenses along with
-  date, category, icons, and emojis. Keep your finances organized with clear
-  labels, smart categorization, and a smooth entry experience.
-</p>
-
-        </div>
-      </div>
+                <p class="text-xl text-gray-600 dark:text-gray-500">
+                  Record every transaction with ease by adding income or
+                  expenses along with date, category, icons, and emojis. Keep
+                  your finances organized with clear labels, smart
+                  categorization, and a smooth entry experience.
+                </p>
+              </div>
+            </div>
 
             <!-- Slide 5 -->
-      <div class="absolute inset-0 flex flex-col md:flex-row items-center gap-12 opacity-0 transition-opacity duration-1000">
-        <img
-          src="./assets/images/Category-budget-setup.png"
-          class="rounded-3xl shadow-xl md:w-1/2 h-full object-cover"
-          alt="Income Tracking"
-        />
-        <div class="md:w-1/2 text-center md:text-left px-4 md:px-0">
-<h3 class="text-5xl font-bold mb-6 text-black dark:text-white">
-  Smart Categories & Budget Planning
-</h3>
+            <div
+              class="absolute inset-0 flex flex-col md:flex-row items-center gap-12 opacity-0 transition-opacity duration-1000"
+            >
+              <img
+                src="./assets/images/Category-budget-setup.png"
+                class="rounded-3xl shadow-xl md:w-1/2 h-full object-cover"
+                alt="Income Tracking"
+              />
+              <div class="md:w-1/2 text-center md:text-left px-4 md:px-0">
+                <h3 class="text-5xl font-bold mb-6 text-black dark:text-white">
+                  Smart Categories & Budget Planning
+                </h3>
 
-<p class="text-xl text-gray-600 dark:text-gray-500">
-  Create custom income and expense categories, assign icons or emojis, and set
-  monthly budgets with ease. Stay in control with clear limits, real-time budget
-  tracking, and alerts that help you avoid overspending.
-</p>
+                <p class="text-xl text-gray-600 dark:text-gray-500">
+                  Create custom income and expense categories, assign icons or
+                  emojis, and set monthly budgets with ease. Stay in control
+                  with clear limits, real-time budget tracking, and alerts that
+                  help you avoid overspending.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <div class="flex justify-center bg-transparent">
+        <div
+          class="w-[99%] h-px bg-gradient-to-r from-transparent via-black to-transparent dark:via-white opacity-40"
+        ></div>
+      </div>
 
+      <section
+        class="py-28 px-6 bg-gradient-to-bl from-violet-100 via-purple-100 to-purple-100 dark:bg-gradient-to-bl dark:from-gray-900 dark:via-black dark:to-gray-900"
+      >
+        <h3
+          class="text-5xl font-bold text-center mb-20 text-black dark:text-white"
+        >
+          Your Money, At A Glance
+        </h3>
+
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <div class="grid grid-cols-2 gap-8">
+            <div
+              class="card p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 shadow-xl"
+              style="--card-shadow: rgba(34, 197, 94, 0.35)"
+            >
+              <p class="text-gray-500">Balance</p>
+              <h4 class="text-3xl font-bold text-green-600">₹45,000</h4>
+            </div>
+
+            <div
+              class="card p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 shadow-xl"
+              style="--card-shadow: rgba(59, 130, 246, 0.35)"
+            >
+              <p class="text-gray-500">Income</p>
+              <h4 class="text-3xl font-bold text-blue-600">₹60,000</h4>
+            </div>
+
+            <div
+              class="card p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 shadow-xl"
+              style="--card-shadow: rgba(239, 68, 68, 0.35)"
+            >
+              <p class="text-gray-500">Expenses</p>
+              <h4 class="text-3xl font-bold text-red-500">₹30,000</h4>
+            </div>
+
+            <div
+              class="card p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 shadow-xl"
+              style="--card-shadow: rgba(168, 85, 247, 0.35)"
+            >
+              <p class="text-gray-500">Savings</p>
+              <h4 class="text-3xl font-bold text-purple-600">₹15,000</h4>
+            </div>
+          </div>
+
+          <!-- PLACEHOLDER IMAGE -->
+          <img
+            src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3"
+            class="preview-img rounded-3xl shadow-2xl"
+            alt="Dashboard preview"
+          />
+        </div>
+      </section>
+
+      <div class="flex justify-center bg-transparent">
+        <div
+          class="w-[99%] h-px bg-gradient-to-r from-transparent via-black to-transparent dark:via-white opacity-40"
+        ></div>
+      </div>
+
+      <section
+        class="py-28 px-6 bg-gradient-to-bl from-violet-100 via-purple-100 to-purple-100 dark:bg-gradient-to-br dark:from-gray-900 dark:via-black dark:to-gray-900"
+      >
+        <h3
+          class="text-5xl font-bold text-center mb-6 text-gray-900 dark:text-white"
+        >
+          Everything You Need
+        </h3>
+        <p
+          class="text-xl text-center text-gray-600 dark:text-gray-500 mb-20 max-w-3xl mx-auto"
+        >
+          All essential tools to manage your finances — simple, secure and
+          powerful.
+        </p>
+
+        <div class="max-w-7xl mx-auto space-y-8 text-black dark:text-gray-300">
+          <!-- ROW 1 : 6 -->
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            <div class="feature-card">🔐 Secure Login</div>
+            <div class="feature-card">📧 Email Verification</div>
+            <div class="feature-card">🔑 Password Protection</div>
+            <div class="feature-card">💸 Daily Expenses</div>
+            <div class="feature-card">🏷 Category Wise</div>
+            <div class="feature-card">📝 Optional Notes</div>
+          </div>
+
+          <!-- ROW 2 : 5 (CENTERED) -->
+          <div class="flex justify-center">
+            <div
+              class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl"
+            >
+              <div class="feature-card">📈 Income Sources</div>
+              <div class="feature-card">🔁 Recurring Income</div>
+              <div class="feature-card">🎯 Monthly Budgets</div>
+              <div class="feature-card">📊 Budget Progress</div>
+              <div class="feature-card">⚠ Overspend Alerts</div>
+            </div>
+          </div>
+          <!-- ROW 3 : 6 -->
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            <div class="feature-card">📜 History</div>
+            <div class="feature-card">🔍 Search</div>
+            <div class="feature-card">📆 Date Filters</div>
+            <div class="feature-card">📊 Visual Reports</div>
+            <div class="feature-card">🧠 Smart Insights</div>
+            <div class="feature-card">🔒 Data Privacy</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="flex justify-center bg-transparent">
+        <div
+          class="w-[99%] h-px bg-gradient-to-r from-transparent via-black to-transparent dark:via-white opacity-40"
+        ></div>
+      </div>
+
+      <section
+        class="py-32 text-center px-6 bg-gradient-to-bl from-violet-100 via-purple-100 to-purple-100 dark:bg-gradient-to-bl dark:from-gray-900 dark:via-black dark:to-gray-900"
+      >
+        <h3 class="text-6xl font-bold mb-10 text-gray-900 dark:text-white">
+          Take Charge Of Your Finances Today
+        </h3>
+
+        <button
+          onclick="document.getElementById('getStartedBtn').click()"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-14 py-6 rounded-2xl text-2xl font-semibold shadow-2xl transition transform hover:scale-105"
+        >
+          Start Free Now
+        </button>
+      </section>
+
+      <footer
+        class="bg-white/60 dark:bg-gray-900/60 backdrop-blur-xl border-t border-black/10 dark:border-white/10 text-black/70 dark:text-white/70 py-16 px-6"
+      >
+        <div
+          class="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-10"
+        >
+          <!-- Brand -->
+          <div class="text-center md:text-left">
+            <div class="flex items-center gap-2">
+              <div
+                class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg"
+              >
+                <span class="text-white font-bold text-lg">₹</span>
+              </div>
+
+              <span
+                class="text-2xl font-extrabold tracking-wide bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
+              >
+                FinanceTracker
+              </span>
+            </div>
+            <p class="max-w-sm">Smart money management made simple.</p>
+          </div>
+
+          <!-- Contact -->
+          <div class="text-center md:text-right">
+            <h5 class="font-semibold text-black dark:text-white mb-3">
+              Contact
+            </h5>
+            <p class="opacity-90">support@financetracker.com</p>
+          </div>
+        </div>
+
+        <div
+          class="mt-12 border-t border-gray-700 pt-6 text-center text-sm opacity-70"
+        >
+          © 2025 FinanceTracker. All rights reserved.
+        </div>
+      </footer>
+    </section>
+
+    <!-- Auth Section -->
+    <section
+      id="authSection"
+      class="hidden min-h-screen flex items-center justify-center"
+    >
+      <div
+        id="authCard"
+        class="w-full max-w-5xl grid md:grid-cols-2 gap-0 rounded-3xl shadow-2xl overflow-hidden border-2 border-gray-600 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 transform scale-90 translate-y-10 opacity-0 transition-all duration-700"
+      >
+        <!-- LEFT SIDE : TEXT ONLY -->
+        <div
+          class="hidden md:flex flex-col items-center justify-center p-12 text-center border-r-2 border-gray-300 dark:border-gray-900"
+        >
+          <h2
+            id="formTitle"
+            class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent dark:from-pink-400 dark:via-purple-400 dark:to-blue-400"
+          >
+            Welcome Back
+          </h2>
+
+          <p
+            class="mt-6 text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-md"
+          >
+            Take Charge of Your Finance Today
+          </p>
+        </div>
+
+        <!-- Right Side: Form Only -->
+        <div class="p-10 lg:p-14 flex flex-col justify-center">
+          <!-- Login Form -->
+          <form id="loginForm" class="space-y-10 py-6 mt-10">
+            <div class="relative">
+              <input
+                id="loginEmail"
+                placeholder="Enter your email"
+                type="email"
+                required
+                class="w-full px-5 py-4 rounded-xl border-2 border-gray-600 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 text-black dark:text-white outline-none transition"
+                onfocus="this.style.borderColor='#0000ff'"
+                onblur="this.style.borderColor=''"
+              />
+              <label
+                class="absolute left-5 -top-3 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 rounded-xl px-2 text-md text-[#0000ff] font-medium pointer-events-none"
+                >Email</label
+              >
+            </div>
+
+            <div class="relative">
+              <input
+                id="loginPassword"
+                placeholder="Enter your password"
+                type="password"
+                minlength="6"
+                required
+                class="w-full px-5 py-4 rounded-xl border-2 border-gray-600 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 text-black dark:text-white outline-none transition"
+                onfocus="this.style.borderColor='#0000ff'"
+                onblur="this.style.borderColor=''"
+              />
+              <label
+                class="absolute left-5 -top-3 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 rounded-xl px-2 text-md text-[#0000ff] font-medium pointer-events-none"
+                >Password</label
+              >
+            </div>
+
+            <button
+              id="loginBtn"
+              type="submit"
+              class="relative w-full bg-[#0000ff] hover:bg-[#0000cc] text-white py-4 rounded-xl font-semibold transition shadow-lg flex items-center justify-center"
+            >
+              <span id="loginBtnText">Login</span>
+
+              <i
+                data-lucide="loader-2"
+                id="loginSpinner"
+                class="absolute w-6 h-6 animate-spin transition-opacity duration-300 opacity-0 pointer-events-none"
+              >
+              </i>
+            </button>
+
+            <p class="text-center text-gray-600 dark:text-gray-400 mt-6">
+              Don't have an account?
+              <span
+                id="openRegister"
+                class="text-[#0000ff] font-semibold cursor-pointer hover:underline"
+                >Sign up</span
+              >
+            </p>
+          </form>
+
+          <!-- Register Form -->
+          <form
+            id="registerForm"
+            class="space-y-6 hidden relative flex flex-col items-center"
+          >
+            <!-- Avatar Upload (Optional) -->
+            <div class="relative w-28 h-28 mx-auto mb-8">
+              <!-- Preview Wrapper -->
+              <div
+                id="avatarPreviewWrapper"
+                class="relative hidden w-full h-full"
+              >
+                <img
+                  id="avatarPreview"
+                  alt="Avatar"
+                  class="w-full h-full rounded-full object-cover border-2 border-gray-600"
+                />
+
+                <!-- Trash Icon -->
+                <button
+                  type="button"
+                  id="removeAvatarBtn"
+                  class="absolute -bottom-1 -right-1 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full shadow-md transition"
+                >
+                  <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <!-- Dotted Upload -->
+              <label
+                for="avatarInput"
+                id="avatarUploadLabel"
+                class="flex flex-col items-center justify-center w-full h-full rounded-full border-2 border-dashed border-gray-400 dark:border-gray-600 cursor-pointer hover:border-[#0000ff] transition text-gray-500 dark:text-gray-400"
+              >
+                <i data-lucide="upload" class="w-8 h-8 mb-1"></i>
+                <span class="text-sm font-medium">Upload</span>
+              </label>
+
+              <input
+                id="avatarInput"
+                type="file"
+                accept="image/*"
+                class="hidden"
+              />
+            </div>
+
+            <div
+              class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 w-full"
+            >
+              <!-- First Name -->
+              <div class="relative w-full md:w-1/2">
+                <input
+                  id="registerFirstName"
+                  type="text"
+                  placeholder="First Name"
+                  required
+                  class="w-full px-5 py-4 rounded-xl border-2 border-gray-600 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 text-black dark:text-white outline-none transition"
+                  onfocus="this.style.borderColor='#0000ff'"
+                  onblur="this.style.borderColor=''"
+                />
+                <label
+                  class="absolute left-5 -top-3 rounded-xl bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 px-2 text-md text-[#0000ff] font-medium pointer-events-none"
+                  >First Name</label
+                >
+              </div>
+
+              <!-- Last Name -->
+              <div class="relative w-full md:w-1/2">
+                <input
+                  id="registerLastName"
+                  type="text"
+                  placeholder="Last Name"
+                  required
+                  class="w-full px-5 py-4 rounded-xl border-2 border-gray-600 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 text-black dark:text-white outline-none transition"
+                  onfocus="this.style.borderColor='#0000ff'"
+                  onblur="this.style.borderColor=''"
+                />
+                <label
+                  class="absolute left-5 -top-3 rounded-xl bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 px-2 text-md text-[#0000ff] font-medium pointer-events-none"
+                  >Last Name</label
+                >
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="relative w-full">
+              <input
+                id="registerEmail"
+                placeholder="Enter your email"
+                type="email"
+                required
+                class="w-full px-5 py-4 rounded-xl border-2 border-gray-600 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 text-black dark:text-white outline-none transition"
+                onfocus="this.style.borderColor='#0000ff'"
+                onblur="this.style.borderColor=''"
+              />
+              <label
+                class="absolute left-5 -top-3 rounded-xl bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 px-2 text-md text-[#0000ff] font-medium pointer-events-none"
+                >Email</label
+              >
+            </div>
+
+            <!-- Password -->
+            <div class="relative w-full">
+              <input
+                id="registerPassword"
+                placeholder="Enter your password (min 6 chars)"
+                type="password"
+                minlength="6"
+                required
+                class="w-full px-5 py-4 rounded-xl border-2 border-gray-600 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 text-black dark:text-white outline-none transition"
+                onfocus="this.style.borderColor='#0000ff'"
+                onblur="this.style.borderColor=''"
+              />
+              <label
+                class="absolute left-5 -top-3 rounded-xl bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 px-2 text-md text-[#0000ff] font-medium pointer-events-none"
+                >Password</label
+              >
+            </div>
+
+            <!-- Submit Button -->
+            <button id="registerBtn" type="submit" class="relative ...">
+              <span id="registerBtnText">Create Account</span>
+
+              <i
+                id="registerSpinner"
+                data-lucide="loader-2"
+                class="absolute w-6 h-6 animate-spin opacity-0 pointer-events-none"
+              >
+              </i>
+            </button>
+
+            <!-- Login Link -->
+            <p class="text-center text-gray-600 dark:text-gray-400 mt-6">
+              Already have an account?
+              <span
+                id="openLogin"
+                class="text-[#0000ff] font-semibold cursor-pointer hover:underline"
+                >Login</span
+              >
+            </p>
+          </form>
         </div>
       </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="flex justify-center bg-transparent ">
-  <div class="w-[99%] h-px bg-gradient-to-r from-transparent via-black to-transparent dark:via-white opacity-40">
-  </div>
-</div>
-
-<section class="py-28 px-6 bg-gradient-to-bl from-violet-100 via-purple-100 to-purple-100 
-    dark:bg-gradient-to-bl dark:from-gray-900 dark:via-black dark:to-gray-900">
-  <h3 class="text-5xl font-bold text-center mb-20 text-black dark:text-white">Your Money, At A Glance</h3>
-
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-<div class="grid grid-cols-2 gap-8">
-
-  <div class="card p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 shadow-xl"
-       style="--card-shadow: rgba(34,197,94,0.35);">
-    <p class="text-gray-500">Balance</p>
-    <h4 class="text-3xl font-bold text-green-600">₹45,000</h4>
-  </div>
-
-  <div class="card p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 shadow-xl"
-       style="--card-shadow: rgba(59,130,246,0.35);">
-    <p class="text-gray-500">Income</p>
-    <h4 class="text-3xl font-bold text-blue-600">₹60,000</h4>
-  </div>
-
-  <div class="card p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 shadow-xl"
-       style="--card-shadow: rgba(239,68,68,0.35);">
-    <p class="text-gray-500">Expenses</p>
-    <h4 class="text-3xl font-bold text-red-500">₹30,000</h4>
-  </div>
-
-  <div class="card p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 shadow-xl"
-       style="--card-shadow: rgba(168,85,247,0.35);">
-    <p class="text-gray-500">Savings</p>
-    <h4 class="text-3xl font-bold text-purple-600">₹15,000</h4>
-  </div>
-
-</div>
-
-
-    <!-- PLACEHOLDER IMAGE -->
-    <img
-      src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3"
-      class="preview-img rounded-3xl shadow-2xl"
-      alt="Dashboard preview"
-    />
-  </div>
-</section>
-
-<div class="flex justify-center bg-transparent ">
-  <div class="w-[99%] h-px bg-gradient-to-r from-transparent via-black to-transparent dark:via-white opacity-40">
-  </div>
-</div>
-
-<section class="py-28 px-6 
-    bg-gradient-to-bl from-violet-100 via-purple-100 to-purple-100 
-    dark:bg-gradient-to-br dark:from-gray-900 dark:via-black dark:to-gray-900">
-  <h3 class="text-5xl font-bold text-center mb-6 text-gray-900 dark:text-white">
-    Everything You Need
-  </h3>
-  <p class="text-xl text-center text-gray-600 dark:text-gray-500 mb-20 max-w-3xl mx-auto">
-    All essential tools to manage your finances — simple, secure and powerful.
-  </p>
-
-  <div class="max-w-7xl mx-auto space-y-8 text-black dark:text-gray-300">
-
-    <!-- ROW 1 : 6 -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-      <div class="feature-card">🔐 Secure Login</div>
-      <div class="feature-card">📧 Email Verification</div>
-      <div class="feature-card">🔑 Password Protection</div>
-      <div class="feature-card">💸 Daily Expenses</div>
-      <div class="feature-card">🏷 Category Wise</div>
-      <div class="feature-card">📝 Optional Notes</div>
-    </div>
-
-    <!-- ROW 2 : 5 (CENTERED) -->
-    <div class="flex justify-center">
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl">
-        <div class="feature-card">📈 Income Sources</div>
-        <div class="feature-card">🔁 Recurring Income</div>
-        <div class="feature-card">🎯 Monthly Budgets</div>
-        <div class="feature-card">📊 Budget Progress</div>
-        <div class="feature-card">⚠ Overspend Alerts</div>
-      </div>
-    </div>
-    <!-- ROW 3 : 6 -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-      <div class="feature-card">📜 History</div>
-      <div class="feature-card">🔍 Search</div>
-      <div class="feature-card">📆 Date Filters</div>
-      <div class="feature-card">📊 Visual Reports</div>
-      <div class="feature-card">🧠 Smart Insights</div>
-      <div class="feature-card">🔒 Data Privacy</div>
-    </div>
-
-
-  </div>
-</section>
-
-<div class="flex justify-center bg-transparent ">
-  <div class="w-[99%] h-px bg-gradient-to-r from-transparent via-black to-transparent dark:via-white opacity-40">
-  </div>
-</div>
-
-
-
-
-
-<section class="py-32 text-center px-6  bg-gradient-to-bl from-violet-100 via-purple-100 to-purple-100 
-    dark:bg-gradient-to-bl dark:from-gray-900 dark:via-black dark:to-gray-900">
-  <h3 class="text-6xl font-bold mb-10 text-gray-900 dark:text-white">
-    Take Charge Of Your Finances Today
-  </h3>
-
-  <button
-    onclick="document.getElementById('getStartedBtn').click()"
-    class="bg-blue-600 hover:bg-blue-700 text-white px-14 py-6 rounded-2xl text-2xl font-semibold shadow-2xl transition transform hover:scale-105"
-  >
-    Start Free Now
-  </button>
-</section>
-
-
-<footer class="bg-white/60 dark:bg-gray-900/60 backdrop-blur-xl 
-border-t border-black/10 dark:border-white/10
-text-black/70 dark:text-white/70 py-16 px-6">
-
-  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-10">
-
-    <!-- Brand -->
-    <div class="text-center md:text-left">
-            <div class="flex items-center gap-2">
-  <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 
-              flex items-center justify-center shadow-lg">
-    <span class="text-white font-bold text-lg">₹</span>
-  </div>
-
-  <span class="text-2xl font-extrabold tracking-wide 
-    bg-gradient-to-r from-indigo-600 to-purple-600 
-    bg-clip-text text-transparent">
-    FinanceTracker
-  </span>
-</div>
-      <p class="max-w-sm">
-        Smart money management made simple.
-      </p>
-    </div>
-
-    <!-- Contact -->
-    <div class="text-center md:text-right">
-      <h5 class="font-semibold text-black dark:text-white mb-3">Contact</h5>
-      <p class="opacity-90">support@financetracker.com</p>
-    </div>
-
-  </div>
-
-  <div class="mt-12 border-t border-gray-700 pt-6 text-center text-sm opacity-70">
-    © 2025 FinanceTracker. All rights reserved.
-  </div>
-</footer>
-
-
-
-
-</section>
-
-
- <!-- Auth Section -->
-  <section id="authSection" class="hidden min-h-screen flex items-center justify-center">
-  <div id="authCard" class="w-full max-w-5xl grid md:grid-cols-2 gap-0 rounded-3xl shadow-2xl overflow-hidden border-2 border-gray-600
-  bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900
-  transform scale-90 translate-y-10 opacity-0 transition-all duration-700">      
-  <!-- LEFT SIDE : TEXT ONLY -->
-  <div class="hidden md:flex flex-col items-center justify-center p-12 text-center border-r-2 border-gray-300 dark:border-gray-900">
-    <h2
-      id="formTitle"
-     class="text-5xl md:text-6xl font-bold 
-         bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500
-         bg-clip-text text-transparent
-         dark:from-pink-400 dark:via-purple-400 dark:to-blue-400"
-    >
-      Welcome Back
-    </h2>
-
-    <p class="mt-6 text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-md">
-      Take Charge of Your Finance Today
-    </p>
-  </div>
-
-      <!-- Right Side: Form Only -->
-      <div class="p-10 lg:p-14 flex flex-col justify-center">
-        
-        <!-- Login Form -->
-        <form id="loginForm" class="space-y-10 py-6 mt-10">
-          <div class="relative">
-            <input id="loginEmail" placeholder="Enter your email" type="email" required class="w-full px-5 py-4 rounded-xl border-2 border-gray-600 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 text-black dark:text-white outline-none transition" onfocus="this.style.borderColor='#0000ff'" onblur="this.style.borderColor=''">
-            <label class="absolute left-5 -top-3   bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 rounded-xl px-2 text-md text-[#0000ff] font-medium pointer-events-none">Email</label>
-          </div>
-
-          <div class="relative">
-            <input id="loginPassword" placeholder="Enter your password" type="password" minlength="6" required class="w-full px-5 py-4 rounded-xl border-2 border-gray-600 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 text-black dark:text-white outline-none transition" onfocus="this.style.borderColor='#0000ff'" onblur="this.style.borderColor=''">
-            <label class="absolute left-5 -top-3 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 rounded-xl px-2 text-md text-[#0000ff] font-medium pointer-events-none">Password</label>
-          </div>
-
-<button
-  id="loginBtn"
-  type="submit"
-  class="relative w-full bg-[#0000ff] hover:bg-[#0000cc] text-white py-4 rounded-xl font-semibold transition shadow-lg flex items-center justify-center"
->
-  <span id="loginBtnText">Login</span>
-
-  <i
-    data-lucide="loader-2"
-    id="loginSpinner"
-    class="absolute w-6 h-6 animate-spin transition-opacity duration-300 opacity-0 pointer-events-none">
-  </i>
-</button>
-
-
-
-          <p class="text-center text-gray-600 dark:text-gray-400 mt-6">
-            Don't have an account? <span id="openRegister" class="text-[#0000ff] font-semibold cursor-pointer hover:underline">Sign up</span>
-          </p>
-        </form>
-
-        <!-- Register Form -->
-<form id="registerForm" class="space-y-6 hidden relative flex flex-col items-center">
-  
-<!-- Avatar Upload (Optional) -->
-<div class="relative w-28 h-28 mx-auto mb-8">
-
-  <!-- Preview Wrapper -->
-  <div id="avatarPreviewWrapper" class="relative hidden w-full h-full">
-    <img
-      id="avatarPreview"
-      alt="Avatar"
-      class="w-full h-full rounded-full object-cover border-2 border-gray-600"
-    />
-
-    <!-- Trash Icon -->
-    <button
-      type="button"
-      id="removeAvatarBtn"
-      class="absolute -bottom-1 -right-1 bg-red-500 hover:bg-red-600
-             text-white p-2 rounded-full shadow-md transition"
-    >
-      <i data-lucide="trash-2" class="w-4 h-4"></i>
-    </button>
-  </div>
-
-  <!-- Dotted Upload -->
-  <label
-    for="avatarInput"
-    id="avatarUploadLabel"
-    class="flex flex-col items-center justify-center w-full h-full rounded-full
-           border-2 border-dashed border-gray-400 dark:border-gray-600
-           cursor-pointer hover:border-[#0000ff] transition
-           text-gray-500 dark:text-gray-400"
-  >
-    <i data-lucide="upload" class="w-8 h-8 mb-1"></i>
-    <span class="text-sm font-medium">Upload</span>
-  </label>
-
-  <input
-    id="avatarInput"
-    type="file"
-    accept="image/*"
-    class="hidden"
-  />
-</div>
-
-
-
-<div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 w-full">
-    <!-- First Name -->
-  <div class="relative w-full md:w-1/2">
-    <input id="registerFirstName" type="text" placeholder="First Name" required class="w-full px-5 py-4 rounded-xl border-2 border-gray-600 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 text-black dark:text-white outline-none transition" onfocus="this.style.borderColor='#0000ff'" onblur="this.style.borderColor=''">
-    <label class="absolute left-5 -top-3 rounded-xl bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 px-2 text-md text-[#0000ff] font-medium pointer-events-none">First Name</label>
-  </div>
-
-  <!-- Last Name -->
-  <div class="relative w-full md:w-1/2">
-    <input id="registerLastName" type="text" placeholder="Last Name" required class="w-full px-5 py-4 rounded-xl border-2 border-gray-600 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 text-black dark:text-white outline-none transition" onfocus="this.style.borderColor='#0000ff'" onblur="this.style.borderColor=''">
-    <label class="absolute left-5 -top-3 rounded-xl bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 px-2 text-md text-[#0000ff] font-medium pointer-events-none">Last Name</label>
-  </div>
-</div>
-
-  <!-- Email -->
-  <div class="relative w-full">
-    <input id="registerEmail" placeholder="Enter your email" type="email" required class="w-full px-5 py-4 rounded-xl border-2 border-gray-600 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 text-black dark:text-white outline-none transition" onfocus="this.style.borderColor='#0000ff'" onblur="this.style.borderColor=''">
-    <label class="absolute left-5 -top-3 rounded-xl bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 px-2 text-md text-[#0000ff] font-medium pointer-events-none">Email</label>
-  </div>
-
-  <!-- Password -->
-  <div class="relative w-full">
-    <input id="registerPassword" placeholder="Enter your password (min 6 chars)" type="password" minlength="6" required class="w-full px-5 py-4 rounded-xl border-2 border-gray-600 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 text-black dark:text-white outline-none transition" onfocus="this.style.borderColor='#0000ff'" onblur="this.style.borderColor=''">
-    <label class="absolute left-5 -top-3 rounded-xl bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-black dark:to-gray-900 px-2 text-md text-[#0000ff] font-medium pointer-events-none">Password</label>
-  </div>
-
-  <!-- Submit Button -->
-<button id="registerBtn" type="submit" class="relative ...">
-  <span id="registerBtnText">Create Account</span>
-
-  <i
-    id="registerSpinner"
-    data-lucide="loader-2"
-    class="absolute w-6 h-6 animate-spin opacity-0 pointer-events-none">
-  </i>
-</button>
-
-
-  <!-- Login Link -->
-  <p class="text-center text-gray-600 dark:text-gray-400 mt-6">
-    Already have an account? <span id="openLogin" class="text-[#0000ff] font-semibold cursor-pointer hover:underline">Login</span>
-  </p>
-
-</form>
-      </div>
-    </div>
-  </section>
-
-  <!-- JS Imports -->
-  <script type="module">
-    import { initAuthUI } from './pages/authUI.js';
-    import { initLogin } from './pages/login.js';
-    import { initRegister } from './pages/register.js';
-
-    lucide.createIcons();
-    initAuthUI();
-    initLogin();
-    initRegister();
-  </script>
-</body>
+    </section>
+
+    <!-- JS Imports -->
+    <script type="module">
+      import { initAuthUI } from "./pages/authUI.js";
+      import { initLogin } from "./pages/login.js";
+      import { initRegister } from "./pages/register.js";
+
+      lucide.createIcons();
+      initAuthUI();
+      initLogin();
+      initRegister();
+    </script>
+  </body>
 </html>

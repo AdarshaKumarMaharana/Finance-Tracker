@@ -1,4 +1,3 @@
-
 const themeToggleBtn = document.getElementById("themeToggle");
 
 function updateThemeIcon() {
@@ -27,6 +26,3 @@ themeToggleBtn.addEventListener("click", () => {
   localStorage.setItem("theme", isDark ? "dark" : "light");
   updateThemeIcon();
 });
-
-
-

@@ -1,4 +1,4 @@
-import pool from '../config/db.js';
+import pool from "../config/db.js";
 
 /* ============================
    ADD NEW INCOME
@@ -6,12 +6,19 @@ import pool from '../config/db.js';
 export const addIncome = async (req, res) => {
   try {
     const userId = req.user.id;
-    const { name, amount, date, category_id, description = '', icon = 'account_balance_wallet' } = req.body;
+    const {
+      name,
+      amount,
+      date,
+      category_id,
+      description = "",
+      icon = "account_balance_wallet",
+    } = req.body;
 
     // Validation
     if (!name || !amount || !date || !category_id) {
       return res.status(400).json({
-        message: 'Name, amount, date and category are required'
+        message: "Name, amount, date and category are required",
       });
     }
 
@@ -23,12 +30,12 @@ export const addIncome = async (req, res) => {
     );
 
     res.status(201).json({
-      message: 'Income added successfully',
-      incomeId: result.insertId
+      message: "Income added successfully",
+      incomeId: result.insertId,
     });
   } catch (err) {
-    console.error('Add Income Error:', err);
-    res.status(500).json({ message: 'Server error' });
+    console.error("Add Income Error:", err);
+    res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -58,8 +65,8 @@ export const getIncome = async (req, res) => {
 
     res.json({ incomes });
   } catch (err) {
-    console.error('Get Income Error:', err);
-    res.status(500).json({ message: 'Server error' });
+    console.error("Get Income Error:", err);
+    res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -70,11 +77,18 @@ export const updateIncome = async (req, res) => {
   try {
     const userId = req.user.id;
     const { id } = req.params;
-    const { name, amount, date, category_id, description = '', icon = 'account_balance_wallet' } = req.body;
+    const {
+      name,
+      amount,
+      date,
+      category_id,
+      description = "",
+      icon = "account_balance_wallet",
+    } = req.body;
 
     // Basic validation
     if (!name || !amount || !date || !category_id) {
-      return res.status(400).json({ message: 'Required fields missing' });
+      return res.status(400).json({ message: "Required fields missing" });
     }
 
     const [result] = await pool.query(
@@ -93,14 +107,14 @@ export const updateIncome = async (req, res) => {
 
     if (result.affectedRows === 0) {
       return res.status(404).json({
-        message: 'Income not found or not owned by you'
+        message: "Income not found or not owned by you",
       });
     }
 
-    res.json({ message: 'Income updated successfully' });
+    res.json({ message: "Income updated successfully" });
   } catch (err) {
-    console.error('Update Income Error:', err);
-    res.status(500).json({ message: 'Server error' });
+    console.error("Update Income Error:", err);
+    res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -113,19 +127,19 @@ export const deleteIncome = async (req, res) => {
     const { id } = req.params;
 
     const [result] = await pool.query(
-      'DELETE FROM income WHERE id = ? AND user_id = ?',
+      "DELETE FROM income WHERE id = ? AND user_id = ?",
       [id, userId]
     );
 
     if (result.affectedRows === 0) {
       return res.status(404).json({
-        message: 'Income not found or not owned by you'
+        message: "Income not found or not owned by you",
       });
     }
 
-    res.json({ message: 'Income deleted successfully' });
+    res.json({ message: "Income deleted successfully" });
   } catch (err) {
-    console.error('Delete Income Error:', err);
-    res.status(500).json({ message: 'Server error' });
+    console.error("Delete Income Error:", err);
+    res.status(500).json({ message: "Server error" });
   }
 };

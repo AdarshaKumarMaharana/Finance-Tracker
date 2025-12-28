@@ -1,18 +1,17 @@
-  export function capitalizeFirstLetter(input) {
-    const value = input.value;
-    if (value.length === 0) return;
+export function capitalizeFirstLetter(input) {
+  const value = input.value;
+  if (value.length === 0) return;
 
-    input.value =
-      value.charAt(0).toUpperCase() + value.slice(1);
-  }
+  input.value = value.charAt(0).toUpperCase() + value.slice(1);
+}
 
- // Toast container banate hain (ek baar hi)
-const toastContainer = document.createElement('div');
-toastContainer.id = 'toastContainer';
+// Toast container banate hain (ek baar hi)
+const toastContainer = document.createElement("div");
+toastContainer.id = "toastContainer";
 document.body.appendChild(toastContainer);
 
-  export function showToast(msg, type = 'success') {
-  const toast = document.createElement('div');
+export function showToast(msg, type = "success") {
+  const toast = document.createElement("div");
   toast.className = `toast ${type}`;
   toast.textContent = msg;
 
@@ -23,12 +22,12 @@ document.body.appendChild(toastContainer);
   toast.offsetHeight;
 
   // Show animation
-  toast.classList.add('show');
+  toast.classList.add("show");
 
   // Auto hide after 3 seconds
   setTimeout(() => {
-    toast.classList.remove('show');
-    toast.classList.add('hide');
+    toast.classList.remove("show");
+    toast.classList.add("hide");
 
     // Remove from DOM after animation
     setTimeout(() => {

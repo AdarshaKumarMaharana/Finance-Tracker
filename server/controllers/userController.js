@@ -1,5 +1,5 @@
-import pool from '../config/db.js';
-import bcrypt from 'bcrypt';
+import pool from "../config/db.js";
+import bcrypt from "bcrypt";
 
 export const getProfile = async (req, res) => {
   try {
@@ -15,7 +15,7 @@ export const getProfile = async (req, res) => {
     if (users.length === 0) {
       return res.status(404).json({
         success: false,
-        message: 'User not found'
+        message: "User not found",
       });
     }
 
@@ -29,15 +29,14 @@ export const getProfile = async (req, res) => {
         lastname: user.lastname,
         email: user.email,
         profileImageUrl: user.profile_image_url,
-        joinedDate: user.created_at
-      }
+        joinedDate: user.created_at,
+      },
     });
-
   } catch (error) {
-    console.error('Get Profile Error:', error);
+    console.error("Get Profile Error:", error);
     return res.status(500).json({
       success: false,
-      message: 'Internal server error'
+      message: "Internal server error",
     });
   }
 };
@@ -51,7 +50,7 @@ export const updateProfile = async (req, res) => {
     if (!firstname || !lastname || !email) {
       return res.status(400).json({
         success: false,
-        message: 'Firstname, lastname and email are required'
+        message: "Firstname, lastname and email are required",
       });
     }
 
@@ -59,38 +58,38 @@ export const updateProfile = async (req, res) => {
 
     // Check duplicate email (except current user)
     const [existingEmail] = await pool.query(
-      'SELECT id FROM users WHERE email = ? AND id != ?',
+      "SELECT id FROM users WHERE email = ? AND id != ?",
       [emailLower, userId]
     );
 
     if (existingEmail.length > 0) {
       return res.status(409).json({
         success: false,
-        message: 'Email already used by another account'
+        message: "Email already used by another account",
       });
     }
 
     // Build dynamic update
-    let updateFields = ['firstname = ?', 'lastname = ?', 'email = ?'];
+    let updateFields = ["firstname = ?", "lastname = ?", "email = ?"];
     let updateValues = [firstname.trim(), lastname.trim(), emailLower];
 
-    if (password && password.trim() !== '') {
+    if (password && password.trim() !== "") {
       if (password.length < 6) {
         return res.status(400).json({
           success: false,
-          message: 'New password must be at least 6 characters'
+          message: "New password must be at least 6 characters",
         });
       }
       const hashedPassword = await bcrypt.hash(password, 10);
-      updateFields.push('password = ?');
+      updateFields.push("password = ?");
       updateValues.push(hashedPassword);
     }
 
     if (profileImageUrl !== undefined) {
-      if (profileImageUrl === '' || profileImageUrl === null) {
-        updateFields.push('profile_image_url = NULL');
+      if (profileImageUrl === "" || profileImageUrl === null) {
+        updateFields.push("profile_image_url = NULL");
       } else {
-        updateFields.push('profile_image_url = ?');
+        updateFields.push("profile_image_url = ?");
         updateValues.push(profileImageUrl);
       }
     }
@@ -99,7 +98,7 @@ export const updateProfile = async (req, res) => {
 
     const query = `
       UPDATE users 
-      SET ${updateFields.join(', ')}
+      SET ${updateFields.join(", ")}
       WHERE id = ?
     `;
 
@@ -108,7 +107,7 @@ export const updateProfile = async (req, res) => {
     if (result.affectedRows === 0) {
       return res.status(404).json({
         success: false,
-        message: 'User not found'
+        message: "User not found",
       });
     }
 
@@ -121,22 +120,21 @@ export const updateProfile = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: 'Profile updated successfully',
+      message: "Profile updated successfully",
       user: {
         id: updated[0].id,
         firstname: updated[0].firstname,
         lastname: updated[0].lastname,
         email: updated[0].email,
         profileImageUrl: updated[0].profile_image_url,
-        joinedDate: updated[0].created_at
-      }
+        joinedDate: updated[0].created_at,
+      },
     });
-
   } catch (error) {
-    console.error('Update Profile Error:', error);
+    console.error("Update Profile Error:", error);
     return res.status(500).json({
       success: false,
-      message: 'Internal server error'
+      message: "Internal server error",
     });
   }
 };

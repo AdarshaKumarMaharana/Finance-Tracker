@@ -1,10 +1,12 @@
-import pool from '../config/db.js';
+import pool from "../config/db.js";
 
 export const getDashboardSummary = async (req, res) => {
   try {
     const userId = req.user.id;
     const today = new Date();
-    const budgetMonth = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`; // e.g., '2025-12'
+    const budgetMonth = `${today.getFullYear()}-${String(
+      today.getMonth() + 1
+    ).padStart(2, "0")}`; // e.g., '2025-12'
 
     // Total income this month
     const [[incomeTotal]] = await pool.query(
@@ -41,26 +43,28 @@ export const getDashboardSummary = async (req, res) => {
       [budgetMonth, userId, userId, budgetMonth, userId]
     );
 
-    const categories = budgetData.map(cat => ({
+    const categories = budgetData.map((cat) => ({
       category_id: cat.category_id,
       name: cat.name,
       icon: cat.icon,
       budget: parseFloat(cat.budget),
       spent: parseFloat(cat.spent),
       progress: cat.budget > 0 ? Math.round((cat.spent / cat.budget) * 100) : 0,
-      remaining: parseFloat(cat.budget) - parseFloat(cat.spent)
+      remaining: parseFloat(cat.budget) - parseFloat(cat.spent),
     }));
 
     res.json({
       summary: {
         totalIncome: parseFloat(incomeTotal.totalIncome || 0),
         totalExpenses: parseFloat(expenseTotal.totalExpenses || 0),
-        savings: parseFloat(incomeTotal.totalIncome || 0) - parseFloat(expenseTotal.totalExpenses || 0)
+        savings:
+          parseFloat(incomeTotal.totalIncome || 0) -
+          parseFloat(expenseTotal.totalExpenses || 0),
       },
-      categories
+      categories,
     });
   } catch (err) {
-    console.error('Dashboard Summary Error:', err);
-    res.status(500).json({ message: 'Server error' });
+    console.error("Dashboard Summary Error:", err);
+    res.status(500).json({ message: "Server error" });
   }
 };
